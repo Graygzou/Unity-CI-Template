@@ -1,0 +1,111 @@
+# Example Travis config. See the entire example: https://github.com/JonathanPorta/ci-build
+
+os: osx
+osx_image: xcode7.3
+
+language: csharp
+#solution: ./****.sln
+
+# Specified the branch.
+branches:
+  only:
+    - master
+
+# Already by default.
+#mono:
+#  -latest
+
+# Environment variables
+env:
+  - COVERALLS_REPO_TOKEN=kDib1lLCmYcMNbecthFkRvRsnmm4Q6VhC
+
+addons:
+  apt:
+    packages:
+      - xsltproc
+      - xmlstarlet
+  sonarcloud:
+    organization: "graygzou-github"
+    token:
+      secure: ${SONAR_TOKEN}
+
+# Set up prerequisites for installing dependencies that you need for you build.
+# For example:
+#   npm install
+#   bundle install
+before_install:
+  # Nuget installs
+  - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory packages -Verbosity quiet
+  - nuget install NUnit.Runners -Version 3.8.0 -OutputDirectory testrunner -Verbosity quiet
+  - nuget install OpenCover -Version 4.6.519 -OutputDirectory packages -Verbosity quiet
+  - nuget install ReportGenerator -Version 2.4.5.0 -OutputDirectory packages -Verbosity quiet
+  - nuget install coveralls.net -Version 0.7.0 -OutputDirectory coveralls -Verbosity quiet
+  - nuget install JetBrains.dotCover.CommandLineTools -Version 2018.1.1 -OutputDirectory packages -Verbosity quiet
+  # Apt installs
+  - brew update > /dev/null
+  - if [ $TRAVIS_OS_NAME = linux ]; then
+      sudo apt-get update;
+      sudo apt-get install xmlstarlet;
+    else
+      brew update;
+      brew install xmlstarlet;
+    fi
+  # Make executable files
+  - chmod a+x ./Scripts/*.sh
+  - chmod a+x ./packages/OpenCover.4.6.519/tools/OpenCover.Console.exe
+  - chmod a+x ./packages/JetBrains.dotCover.CommandLineTools.2018.1.1/tools/dotCover.exe
+
+# Set up the dependencies of your build.
+install:
+  - ./Scripts/install.sh
+  - ./Scripts/build.sh
+
+# Set up your environment before you run your script.
+# For example:
+#   copy files, start your database, or declare environment variables
+before_script:
+
+# Runs your test script
+script:
+  # Run customs tests.
+  - ./Scripts/run-tests.sh
+  # Try convert Unity xml response into NUnit xml.
+  #- ./Scripts/fix-unity-test-results.sh
+  #- echo "Done"
+  # done
+  - ./Scripts/nunit.sh ./Library/ScriptAssemblies/Assembly-CSharp-Editor.dll
+  # OpenCover -- Not tested
+  #- OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:".\MyUnitTests\bin\Debug\MyUnitTests.dll -noshadow" -filter:"+[UnitTestTargetProject*]* -[MyUnitTests*]*" -output:".\MyProject_coverage.xml"
+  #- codecov -f "MyProject_coverage.xml
+  # -----------------------
+  # NUnit tests
+  # -----------------------
+  - curl -s https://codecov.io/bash > codecov
+  - chmod +x codecov
+  # --- DEBUG ---
+  - ./Scripts/debug.sh
+  # Not supported with NUnit 2
+  # ...
+  # New Test
+  - ./Scripts/test.sh
+  # Test with NUnit 3
+  - mono ./testrunner/NUnit.ConsoleRunner.3.8.0/tools/nunit3-console.exe ./Library/ScriptAssemblies/Assembly-CSharp-Editor.dll
+  - ./codecov -f $(pwd)/TestResult.xml -t 3c5ce3f9-ddde-4db1-a62e-f0d35e9112ec
+  # ------------------------
+  # End
+  # ------------------------
+
+# The deployment portion is used to deploy to specific,
+# supported hosts, like S3, Heroku, or GitHub Releases.
+#after_success:
+
+# Build Matrix
+# Creating a build matrix is a way for us to test a wide variety of environments.
+
+# set notification options
+notifications:
+  email:
+    recipients:
+      - boiron.greg@gmail.com
+    on_success: change # Default: change. Can be replace by never.
+    on_failure: always # Default: always
