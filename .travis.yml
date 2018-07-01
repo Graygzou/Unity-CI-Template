@@ -17,7 +17,7 @@ branches:
 
 # Environment variables
 env:
-  - COVERALLS_REPO_TOKEN=kDib1lLCmYcMNbecthFkRvRsnmm4Q6VhC
+  - CODECOV_IO_TOKEN=2ff3d741-5b36-4314-9537-8581706ed054
 
 addons:
   apt:
@@ -90,7 +90,7 @@ script:
   - ./Scripts/test.sh
   # Test with NUnit 3
   - mono ./testrunner/NUnit.ConsoleRunner.3.8.0/tools/nunit3-console.exe ./Library/ScriptAssemblies/Assembly-CSharp-Editor.dll
-  - ./codecov -f $(pwd)/TestResult.xml -t 3c5ce3f9-ddde-4db1-a62e-f0d35e9112ec
+  - ./codecov -f $(pwd)/TestResult.xml -t $CODECOV_IO_TOKEN
   # ------------------------
   # End
   # ------------------------
