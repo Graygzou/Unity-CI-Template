@@ -40,7 +40,7 @@ before_install:
   - nuget install NUnit.Runners -Version 3.8.0 -OutputDirectory testrunner -Verbosity quiet
   - nuget install OpenCover -Version 4.6.519 -OutputDirectory packages -Verbosity quiet
   - nuget install ReportGenerator -Version 2.4.5.0 -OutputDirectory packages
-  - nuget install coveralls.io -Version 1.0.0 -OutputDirectory coveralls
+  - nuget install coveralls.io -Version 1.4.2 -OutputDirectory coveralls
   - dotnet tool install --global coveralls.net --version 1.0.0
   - nuget install JetBrains.dotCover.CommandLineTools -Version 2018.1.1 -OutputDirectory packages -Verbosity quiet
   # Apt installs

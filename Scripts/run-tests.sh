@@ -55,7 +55,7 @@ echo "--------------------------------------------------"
 #Test for coveralls
 echo ""
 echo "Sending data to Coveralls..."
-mono ./coveralls/coveralls.io.1.0.0/tools/coveralls.net.exe -d --opencover "$(pwd)/$filename" -r $COVERALLS_REPO_TOKEN
+mono ./coveralls/coveralls.io.1.4.2/tools/coveralls.net.exe -d --opencover "$(pwd)/$filename" -r $COVERALLS_REPO_TOKEN
 
 # Test for codecov
 echo "Sending data to Codecov..."
