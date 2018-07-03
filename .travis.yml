@@ -16,10 +16,9 @@ branches:
 #  -latest
 
 # Environment variables
-env:
-  global:
-    - COVERALLS_REPO_TOKEN=31vTyvuzQKRzQHG3dUEQAo7QG2EXP5A3E
-    - CODECOV_IO_TOKEN=2ff3d741-5b36-4314-9537-8581706ed054
+#env:
+#  global:
+#    - CODECOV_IO_TOKEN=2ff3d741-5b36-4314-9537-8581706ed054
 
 addons:
   apt:
