@@ -44,7 +44,6 @@ before_install:
   - nuget install OpenCover -Version 4.6.519 -OutputDirectory packages -Verbosity quiet
   - nuget install ReportGenerator -Version 2.4.5.0 -OutputDirectory packages
   - nuget install coveralls.io -Version 1.4.2 -OutputDirectory coveralls
-  - monocov --version
   - nuget install JetBrains.dotCover.CommandLineTools -Version 2018.1.1 -OutputDirectory packages -Verbosity quiet
   # Apt installs
   - brew update > /dev/null
