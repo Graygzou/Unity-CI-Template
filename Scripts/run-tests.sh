@@ -55,13 +55,13 @@ echo "--------------------------------------------------"
 #Test for coveralls
 echo ""
 echo "Sending data to Coveralls..."
-mono ./coveralls/coveralls.net.0.7.0/tools/csmacnz.Coveralls.exe --opencover -i $(pwd)/$filename --useRelativePaths
+mono ./coveralls/coveralls.io.1.4.2/tools/coveralls.net.exe --opencover -i $(pwd)/$filename -r 31vTyvuzQKRzQHG3dUEQAo7QG2EXP5A3E
 
 # Test for codecov
 echo "Sending data to Codecov..."
 curl -s https://codecov.io/bash > codecov
 chmod +x codecov
 # NUnit v3.0
-./codecov -f $(pwd)/$filename -t 3c5ce3f9-ddde-4db1-a62e-f0d35e9112ec
+./codecov -f $(pwd)/$filename -t 2ff3d741-5b36-4314-9537-8581706ed054
 
 set +e
