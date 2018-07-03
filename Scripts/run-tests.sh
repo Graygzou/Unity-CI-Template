@@ -55,7 +55,7 @@ echo "--------------------------------------------------"
 #Test for coveralls
 echo ""
 echo "Sending data to Coveralls..."
-mono ./coveralls/coveralls.io.1.4.2/tools/coveralls.net.exe --opencover -i $(pwd)/$filename -r 31vTyvuzQKRzQHG3dUEQAo7QG2EXP5A3E
+mono ./coveralls/coveralls.io.1.4.2/tools/coveralls.net.exe --opencover $(pwd)/$filename -r 31vTyvuzQKRzQHG3dUEQAo7QG2EXP5A3E
 
 # Test for codecov
 echo "Sending data to Codecov..."
