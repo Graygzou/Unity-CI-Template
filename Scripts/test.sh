@@ -32,11 +32,7 @@ echo ""
 cat $coverage/coverage2.xml
 echo ""
 
-if [ -n "$COVERALLS_REPO_TOKEN" ]
-then
-  mono ./coveralls/coveralls.net.0.7.0/tools/csmacnz.Coveralls.exe --opencover -i coverage/coverage.xml --useRelativePaths
-fi
-
+mono ./coveralls/coveralls.net.0.7.0/tools/csmacnz.Coveralls.exe --opencover -i coverage/coverage.xml --useRelativePaths
 
 echo "Calculating coverage with dotCover"
 mono $(pwd)/packages/JetBrains.dotCover.CommandLineTools.2018.1.1/tools/dotCover.exe analyse TargetExecutable:"$(pwd)/testrunner/NUnit.ConsoleRunner.3.8.0/tools/nunit3-console.exe" TargetArguments:"$(pwd)/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" Output:report.xml
