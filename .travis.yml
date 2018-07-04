@@ -8,9 +8,9 @@ language: csharp
 
 matrix:
   include:
-    - dotnet: 2.1.301
-      mono: none
-      env: DOTNETCORE=1  # optional, can be used to take different code paths in your script
+    #- dotnet: 2.1.301
+    #  mono: none
+    #  env: DOTNETCORE=1  # optional, can be used to take different code paths in your script
     - mono: latest  # Already by default.
 
 # Specified the branch.
@@ -22,6 +22,11 @@ branches:
 #env:
 #  global:
 #    - CODECOV_IO_TOKEN=2ff3d741-5b36-4314-9537-8581706ed054
+env:
+  global:
+   # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
+   #   via the "travis encrypt" command using the project repo's public key
+   - secure: "GvFFGogMRSJvs5bJJN4flGmS1wj6Jv7ssl0hcRRaNXo3Uwb01sPUuD5yYMY1s1vkhsD8/XsN9Yv6N92A6XFPRZsDumEOD6TqlRdLsMr+63ltZ+nnxpTDCGr0oiFXH80g6iQl9PrXh3XEmCxQqggzMqVogIZ0/TT3DSnZq8dKyVugxscwYa+u/2Uf98AJgObGnooSYDJa8UNTvOVri8PhfIlvLinqM2nEbpvz3v+93/QbhLrsI/2G9bb6JK0Ny4WXw5k0mjH7r2Izcr9ux/mskFMbh7i0Xvtr3K0xUOoC4x/1a0HfXyZQu5hXDCDez8C0dV9/8XQSIug8wIBVbLk30ITTEZFVbI6w6Y8zNo3ZaaSfTxAKtChfa4HInQnpTeBMuncwF+k1uda/QlImY8LYCkF1ftL6AUKTb4Wk1uc0a0nkAzS8AXZvgrZi+SfbCZJklK/2vtzKvoLtYeDX/A0eQ4ZtVfpnQS0/XyQj5LnJJtTsOYFzMUQwsEIWSOoK1r0PBx5lHoFGPZllehPpjqdfl6khUG1mqwaolfAHBD97G4e5jFT66+p0oKhRSw+2T4mOmgVdrv6PK//JkKb4ViFK2sYHj8U8Ekexxjbdx7DtR+ImQKVHoOnMp0UehMNDbKwLUSowBSuK15WQr7nrqBFULc128810TTwrEwuWYmhSeWg="
 
 addons:
   apt:
@@ -32,6 +37,13 @@ addons:
     organization: "graygzou-github"
     token:
       secure: ${SONAR_TOKEN}
+  coverity_scan:
+    project:
+      name: "Graygzou/Unity-CI-Template"
+      description: "Sample project for Travis and Nunit testing"
+    build_command_prepend: ./Scripts/install.sh
+    build_command: ./Scripts/build.sh
+    branch_pattern: master
 
 # Set up prerequisites for installing dependencies that you need for you build.
 # For example:
@@ -39,11 +51,10 @@ addons:
 #   bundle install
 before_install:
   # Nuget installs
-
   ### The NUnit unit testing tool.
   - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory packages -Verbosity quiet
   - nuget install NUnit.Runners -Version 3.8.0 -OutputDirectory testrunner -Verbosity quiet
-  ### OpenCover captures the NUnit testing results and produces the coverage report in .XML format
+  ### (Windows OSs only - no MONO) OpenCover captures the NUnit testing results and produces the coverage report in .XML format
   - nuget install OpenCover -Version 4.6.519 -OutputDirectory packages -Verbosity quiet
   ### Produces the HTML report based upon OpenCover’s Results (.XML)
   - nuget install ReportGenerator -Version 2.4.5.0 -OutputDirectory packages
@@ -62,6 +73,8 @@ before_install:
   - chmod a+x ./Scripts/*.sh
   - chmod a+x ./packages/OpenCover.4.6.519/tools/OpenCover.Console.exe
   - chmod a+x ./packages/JetBrains.dotCover.CommandLineTools.2018.1.1/tools/dotCover.exe
+  # Coverity scan
+  - echo -n | openssl s_client -connect https://scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
 
 # Set up the dependencies of your build.
 install:
