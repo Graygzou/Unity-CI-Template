@@ -48,6 +48,24 @@ echo ""
 #cat $(pwd)/nunit-test-results.xml
 #echo ""
 
+# Execute tests with OpenCover
+echo "--------------------------------------------------"
+echo "Execute test now with OpenCover"
+echo "--------------------------------------------------"
+mono ./packages/OpenCover.4.6.519/tools/OpenCover.Console.exe \
+	-target:$(pwd)/testrunner/NUnit.ConsoleRunner.3.8.0/tools/nunit3-console.exe \
+	-targetargs:$(pwd)/Assets/Library/ScriptAssemblies/Assembly-CSharp.dll \
+	-register:user \
+	-output:opencover.xml
+
+# Print the Unity results.
+echo "OpenCover test logs"
+echo ""
+cat $(pwd)/opencover.xml
+echo ""
+
+# SonarQube ?
+
 echo "--------------------------------------------------"
 echo "Sending data coverage to third party software"
 echo "--------------------------------------------------"
