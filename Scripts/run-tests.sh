@@ -58,20 +58,29 @@ echo ""
 #	-register:user \
 #	-output:opencover.xml
 
-echo "Unity test logs v1.0"
-mono ./packages/JetBrains.dotCover.CommandLineTools.2018.1.1/tools/dotCover.exe analyse AppCoverageReport1.xml
+echo "Debug"
+ls -l -R Assets/Library/ScriptAssemblies/
+
+
+# Do a trick to print the content of doc
+ls Assets/Library/ScriptAssemblies/ > files.txt
+cat $(cat files.txt) > output
+
+echo ""
+#echo "Unity test logs v1.0"
+#mono ./packages/JetBrains.dotCover.CommandLineTools.2018.1.1/tools/dotCover.exe analyse AppCoverageReport1.xml
 
 # Print the Unity results.
-echo "XXXX v1.0 test logs"
-echo ""
-cat $(pwd)/AppCoverageReport1.xml
-echo ""
+#cho "XXXX v1.0 test logs"
+#echo ""
+#cat $(pwd)/AppCoverageReport1.xml
+#echo ""
 
 #
 echo "Unity test logs v2.0"
 mono ./packages/JetBrains.dotCover.CommandLineTools.2018.1.1/tools/dotCover.exe analyse \
 	TargetExecutable="$(pwd)/testrunner/NUnit.ConsoleRunner.3.8.0/tools/nunit3-console.exe" \
-	TargetArguments="$(pwd)/Assets/Library/ScriptAssemblies/Assembly-CSharp.dll" \
+	TargetArguments="$(pwd)/Assets/Library/ScriptAssemblies/*.dll" \
 	Output="AppCoverageReport.xml" \
 	ReportType="XML"
 
