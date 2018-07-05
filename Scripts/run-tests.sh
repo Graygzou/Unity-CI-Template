@@ -59,12 +59,12 @@ echo ""
 #	-output:opencover.xml
 
 echo "Debug"
-ls -l -R Assets/Library/ScriptAssemblies/
+ls -l -R ./Build/
 
 
 # Do a trick to print the content of doc
-ls Assets/Library/ScriptAssemblies/ > files.txt
-cat $(cat files.txt) > output
+#ls ./Assets/Library/ScriptAssemblies/ > files.txt
+#cat $(cat files.txt) > output
 
 echo ""
 #echo "Unity test logs v1.0"
