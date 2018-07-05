@@ -73,8 +73,6 @@ before_install:
   - chmod a+x ./Scripts/*.sh
   - chmod a+x ./packages/OpenCover.4.6.519/tools/OpenCover.Console.exe
   - chmod a+x ./packages/JetBrains.dotCover.CommandLineTools.2018.1.1/tools/dotCover.exe
-  # Coverity scan
-  - echo -n | openssl s_client -connect https://scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
 
 # Set up the dependencies of your build.
 install:
