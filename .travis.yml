@@ -57,8 +57,8 @@ before_install:
   ### (Windows OSs only - no MONO) OpenCover captures the NUnit testing results and produces the coverage report in .XML format
   - nuget install OpenCover -Version 4.6.519 -OutputDirectory packages -Verbosity quiet
   ### Produces the HTML report based upon OpenCover’s Results (.XML)
-  - nuget install ReportGenerator -Version 2.4.5.0 -OutputDirectory packages
-  - nuget install coveralls.io -Version 1.4.2 -OutputDirectory coveralls
+  - nuget install ReportGenerator -Version 2.4.5.0 -OutputDirectory packages -Verbosity quiet
+  - nuget install coveralls.io -Version 1.4.2 -OutputDirectory coveralls -Verbosity quiet
   - nuget install JetBrains.dotCover.CommandLineTools -Version 2018.1.1 -OutputDirectory packages -Verbosity quiet
   # Apt installs
   - brew update > /dev/null
@@ -88,12 +88,10 @@ before_script:
 script:
   # Run customs tests.
   - ./Scripts/run-tests.sh
-
   # Try something new.... Does not work.
   #- mono --debug --profile=monocov:outfile=monocovCoverage.cov,+Unity-CI-Template ./testrunner/NUnit.ConsoleRunner.3.8.0/tools/nunit3-console.exe --process=Single ./Assets/Library/ScriptAssemblies/Assembly-CSharp.dll
   #- monocov --export-xml=monocovCoverage monocovCoverage.cov
   #- cat monocovCoverage.cov
-
   # Try convert Unity xml response into NUnit xml.
   #- ./Scripts/fix-unity-test-results.sh
   #- echo "Done"
