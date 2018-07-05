@@ -58,14 +58,6 @@ echo ""
 #	-register:user \
 #	-output:opencover.xml
 
-echo "Debug"
-ls -l -R ./Build/
-
-
-# Do a trick to print the content of doc
-#ls ./Assets/Library/ScriptAssemblies/ > files.txt
-#cat $(cat files.txt) > output
-
 echo ""
 #echo "Unity test logs v1.0"
 #mono ./packages/JetBrains.dotCover.CommandLineTools.2018.1.1/tools/dotCover.exe analyse AppCoverageReport1.xml

@@ -74,6 +74,8 @@ before_script:
 
 # Runs your test script
 script:
+  # --- DEBUG ---
+  - ./Scripts/debug.sh
   # Run customs tests.
   - ./Scripts/run-tests.sh
   # Try something new.... Does not work.
@@ -93,8 +95,6 @@ script:
   # -----------------------
   - curl -s https://codecov.io/bash > codecov
   - chmod +x codecov
-  # --- DEBUG ---
-  - ./Scripts/debug.sh
   # Not supported with NUnit 2
   # ...
   #
