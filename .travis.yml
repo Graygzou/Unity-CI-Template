@@ -4,7 +4,7 @@ os: osx
 osx_image: xcode7.3
 language: csharp
 # If let by the gitignore.
-#solution: ./****.sln
+solution: Unity-CI-Template.sln
 
 #matrix:
   #include:
@@ -64,6 +64,7 @@ before_install:
 
 # Set up the dependencies of your build.
 install:
+  - nuget restore Unity-CI-Template.sln
   - ./Scripts/install.sh
   - ./Scripts/build.sh
 
