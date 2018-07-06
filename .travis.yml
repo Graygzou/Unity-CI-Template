@@ -76,7 +76,7 @@ before_script:
 # Runs your test script
 script:
   # --- DEBUG ---
-  - ./Scripts/debug.sh
+  #- ./Scripts/debug.sh
   # Run customs tests.
   - ./Scripts/run-tests.sh
   # Try something new.... Does not work.
