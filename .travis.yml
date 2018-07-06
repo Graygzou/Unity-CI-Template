@@ -51,6 +51,7 @@ before_install:
   - nuget install ReportGenerator -Version 2.4.5.0 -OutputDirectory packages -Verbosity quiet
   - nuget install coveralls.io -Version 1.4.2 -OutputDirectory coveralls -Verbosity quiet
   - nuget install JetBrains.dotCover.CommandLineTools -Version 2018.1.1 -OutputDirectory packages -Verbosity quiet
+  - nuget install NUnit3TestAdapter -Version 3.10.0
   # Apt installs
   - brew update > /dev/null
   - if [ $TRAVIS_OS_NAME = linux ]; then
@@ -82,6 +83,9 @@ script:
   #- ./Scripts/debug.sh
   # Run customs tests.
   - ./Scripts/run-tests.sh
+  - dotnet test
+  - dotnet test ./Unity-CI-Template.csproj
+  - dotnet test ./Unity-CI-Template.Editor.csproj
   # Try something new.... Does not work.
   #- mono --debug --profile=monocov:outfile=monocovCoverage.cov,+Unity-CI-Template ./testrunner/NUnit.ConsoleRunner.3.8.0/tools/nunit3-console.exe --process=Single ./Assets/Library/ScriptAssemblies/Assembly-CSharp.dll
   #- monocov --export-xml=monocovCoverage monocovCoverage.cov
