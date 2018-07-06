@@ -6,7 +6,7 @@ solution: Unity-CI-Template.sln
 
 matrix:
   include:
-    - os: osx
+    - os: osx # 10.12
       osx_image: xcode9.1
       dotnet: 2.1.301
       mono: none
@@ -60,6 +60,7 @@ before_install:
   - nuget install coveralls.io -Version 1.4.2 -OutputDirectory coveralls -Verbosity quiet
   - nuget install JetBrains.dotCover.CommandLineTools -Version 2018.1.1 -OutputDirectory packages -Verbosity quiet
   - nuget install NUnit3TestAdapter -Version 3.10.0
+  - nuget install xunit.runner.console -Version 2.3.1 -OutputDirectory packages
   # Apt installs
   - brew update > /dev/null
   - if [ $TRAVIS_OS_NAME = linux ]; then
@@ -73,6 +74,7 @@ before_install:
   - chmod a+x ./Scripts/*.sh
   - chmod a+x ./packages/OpenCover.4.6.519/tools/OpenCover.Console.exe
   - chmod a+x ./packages/JetBrains.dotCover.CommandLineTools.2018.1.1/tools/dotCover.exe
+  - chmod a+x ./packages/xunit.runner.console.2.3.1/tools/xunit.console.exe
 
 # Set up the dependencies of your build.
 install:
@@ -97,6 +99,7 @@ script:
   - dotnet build
   - dotnet test ./Unity-CI-Template.csproj
   - dotnet test ./Unity-CI-Template.Editor.csproj
+  - mono ./packages/xunit.runners.console.2.3.1/tools/xunit.console.exe ./Assets/Library/ScriptAssemblies/Assembly-CSharp.dll
   # Try something new.... Does not work.
   #- mono --debug --profile=monocov:outfile=monocovCoverage.cov,+Unity-CI-Template ./testrunner/NUnit.ConsoleRunner.3.8.0/tools/nunit3-console.exe --process=Single ./Assets/Library/ScriptAssemblies/Assembly-CSharp.dll
   #- monocov --export-xml=monocovCoverage monocovCoverage.cov
