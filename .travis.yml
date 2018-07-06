@@ -1,20 +1,27 @@
 # Example Travis config. See the entire example: https://github.com/JonathanPorta/ci-build
 
-os: osx
-osx_image: xcode9.1
 language: csharp
 # If let by the gitignore.
 solution: Unity-CI-Template.sln
 
 matrix:
   include:
-    - dotnet: 2.1.301
+    - os: osx
+      osx_image: xcode9.1
+      dotnet: 2.1.301
       mono: none
       env: DOTNETCORE=1
-    - mono: latest  # Already by default.
+    - os: osx
+      osx_image: xcode9.1
+      mono: latest  # Already by default.
       env: MONOCORE=1
-    - dotnet: 2.1.301
+    - os: osx
+      osx_image: xcode9.1
+      dotnet: 2.1.301
       mono: latest
+    - os: linux # Ubuntu 14.04
+      dist: trusty
+      sudo: required
 
 # Specified the branch.
 branches:
@@ -42,6 +49,7 @@ addons:
 #   bundle install
 before_install:
   # Nuget installs
+  - nuget restore Unity-CI-Template.sln
   ### The NUnit unit testing tool.
   - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory packages -Verbosity quiet
   - nuget install NUnit.Runners -Version 3.8.0 -OutputDirectory testrunner -Verbosity quiet
@@ -68,7 +76,6 @@ before_install:
 
 # Set up the dependencies of your build.
 install:
-  - nuget restore Unity-CI-Template.sln
   - ./Scripts/install.sh
   - ./Scripts/build.sh
 
@@ -81,9 +88,13 @@ before_script:
 script:
   # --- DEBUG ---
   #- ./Scripts/debug.sh
+  - msbuild /p:Configuration=Release Unity-CI-Template.sln
+  - msbuild /p:Configuration=Release Unity-CI-Template.Editor.sln
   # Run customs tests.
   - ./Scripts/run-tests.sh
-  - dotnet test
+  - dotnet --info
+  - dotnet restore
+  - dotnet build
   - dotnet test ./Unity-CI-Template.csproj
   - dotnet test ./Unity-CI-Template.Editor.csproj
   # Try something new.... Does not work.
