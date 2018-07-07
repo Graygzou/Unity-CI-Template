@@ -70,6 +70,7 @@ before_install:
       brew update;
       brew install xmlstarlet;
     fi
+  - ./Scripts/debug.sh
   # Make executable files
   - chmod a+x ./Scripts/*.sh
   - chmod a+x ./packages/OpenCover.4.6.519/tools/OpenCover.Console.exe

@@ -1,7 +1,4 @@
 #!/bin/sh
-echo ""
-echo "======== Test 1 ==========="
-ls -l -R
 
 # 3
 echo ""
