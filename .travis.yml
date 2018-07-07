@@ -100,7 +100,6 @@ script:
   - dotnet build
   - dotnet test ./Unity-CI-Template.csproj
   - dotnet test ./Unity-CI-Template.Editor.csproj
-  - mono ./packages/xunit.runner.console.2.3.1/tools/net452/xunit.console.exe ./Assets/Library/ScriptAssemblies/Assembly-CSharp.dll
   # Try something new.... Does not work.
   #- mono --debug --profile=monocov:outfile=monocovCoverage.cov,+Unity-CI-Template ./testrunner/NUnit.ConsoleRunner.3.8.0/tools/nunit3-console.exe --process=Single ./Assets/Library/ScriptAssemblies/Assembly-CSharp.dll
   #- monocov --export-xml=monocovCoverage monocovCoverage.cov
