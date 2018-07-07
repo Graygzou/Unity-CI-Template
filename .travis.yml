@@ -75,7 +75,7 @@ before_install:
   - ./Scripts/debug.sh
   - chmod a+x ./packages/OpenCover.4.6.519/tools/OpenCover.Console.exe
   - chmod a+x ./packages/JetBrains.dotCover.CommandLineTools.2018.1.1/tools/dotCover.exe
-  - chmod a+x ./packages/xunit.runner.console.2.3.1/tools/xunit.console.exe
+  - chmod a+x ./packages/xunit.runner.console.2.3.1/tools/net452/xunit.console.exe
 
 # Set up the dependencies of your build.
 install:
@@ -100,7 +100,7 @@ script:
   - dotnet build
   - dotnet test ./Unity-CI-Template.csproj
   - dotnet test ./Unity-CI-Template.Editor.csproj
-  - mono ./packages/xunit.runners.console.2.3.1/tools/xunit.console.exe ./Assets/Library/ScriptAssemblies/Assembly-CSharp.dll
+  - mono ./packages/xunit.runner.console.2.3.1/tools/net452/xunit.console.exe ./Assets/Library/ScriptAssemblies/Assembly-CSharp.dll
   # Try something new.... Does not work.
   #- mono --debug --profile=monocov:outfile=monocovCoverage.cov,+Unity-CI-Template ./testrunner/NUnit.ConsoleRunner.3.8.0/tools/nunit3-console.exe --process=Single ./Assets/Library/ScriptAssemblies/Assembly-CSharp.dll
   #- monocov --export-xml=monocovCoverage monocovCoverage.cov
