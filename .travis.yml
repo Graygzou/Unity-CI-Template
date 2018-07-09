@@ -49,7 +49,7 @@ addons:
 #   bundle install
 before_install:
   # Nuget installs
-  - if [ $DOTNETCORE -ne 1 ]; then
+  - if [ ! $DOTNETCORE ]; then
       ./Scripts/before-install-nuget.sh;
     fi
   # Apt installs
