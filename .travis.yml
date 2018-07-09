@@ -43,16 +43,21 @@ addons:
     token:
       secure: ${SONAR_TOKEN}
 
+# --------------------------------------------------------------------------------
 # Set up prerequisites for installing dependencies that you need for you build.
 # For example:
 #   npm install
 #   bundle install
+# --------------------------------------------------------------------------------
 before_install:
   # Make executable files
   - chmod a+x ./Scripts/*.sh
   # Nuget installs
   - if [ ! $DOTNETCORE ]; then
       ./Scripts/before-install-nuget.sh;
+      chmod a+x ./packages/OpenCover.4.6.519/tools/OpenCover.Console.exe;
+      chmod a+x ./packages/JetBrains.dotCover.CommandLineTools.2018.1.1/tools/dotCover.exe;
+      chmod a+x ./packages/xunit.runner.console.2.3.1/tools/net452/xunit.console.exe;
     fi
   # Apt installs
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then
@@ -64,21 +69,24 @@ before_install:
       brew install xmlstarlet;
     fi
   #- ./Scripts/debug.sh
-  - chmod a+x ./packages/OpenCover.4.6.519/tools/OpenCover.Console.exe
-  - chmod a+x ./packages/JetBrains.dotCover.CommandLineTools.2018.1.1/tools/dotCover.exe
-  - chmod a+x ./packages/xunit.runner.console.2.3.1/tools/net452/xunit.console.exe
 
-# Set up the dependencies of your build.
+# ---------------------------------------------------
+# install : Set up the dependencies of your build.
+# ---------------------------------------------------
 install:
   - ./Scripts/install.sh
   - ./Scripts/build.sh
 
+# --------------------------------------------------------------------
 # Set up your environment before you run your script.
 # For example:
 #   copy files, start your database, or declare environment variables
+# --------------------------------------------------------------------
 before_script:
 
-# Runs your test script
+# ---------------------------------
+# script : Runs your test script
+# ---------------------------------
 script:
   # --- DEBUG ---
   #- ./Scripts/debug.sh
@@ -126,14 +134,18 @@ script:
   # End
   # ------------------------
 
+# -------------------------------------------------------
 # The deployment portion is used to deploy to specific,
 # supported hosts, like S3, Heroku, or GitHub Releases.
+# -------------------------------------------------------
 #after_success:
 
 # Build Matrix
 # Creating a build matrix is a way for us to test a wide variety of environments.
 
+# ---------------------------
 # set notification options
+# ----------------------------
 notifications:
   email:
     recipients:
