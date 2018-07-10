@@ -1,0 +1,17 @@
+version: '1.0.{build}'
+
+image: Visual Studio 2017
+
+before_build:
+  - nuget restore
+  - choco install opencover.portable
+  - choco install codecov
+
+build:
+  project: Unity-CI-Template.sln
+  # Verbosity: minimal
+
+test_script:
+  - OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.exe" -targetargs:".\Library\ScriptAssemblies\Assembly-CSharp.dll -noshadow" -filter:"+[UnityPackageManager*]*" -output:".\MyProject_coverage.xml" 
+  - codecov -f "MyProject_coverage.xml"
+
