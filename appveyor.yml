@@ -4,9 +4,10 @@ image: Visual Studio 2017
 environment:
   CYG_ROOT: C:\cygwin64
 
-install:
-  - '%CYG_ROOT%/bin/bash -lc "./Scripts/install.sh"'
-  - '%CYG_ROOT%/bin/bash -lc "./Scripts/build.sh"'
+install_script:
+  - '%CYG_ROOT%/bin/bash -lc "cd $APPVEYOR_BUILD_FOLDER; ./Scripts/install.sh"'
+build_script:
+  - '%CYG_ROOT%/bin/bash -lc "cd $QPPVEYOR_BUILD_FOLDER; ./Scripts/build.sh"'
 
 before_build:
   - nuget restore
