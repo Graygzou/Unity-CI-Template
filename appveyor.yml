@@ -2,6 +2,10 @@ version: '1.0.{build}'
 
 image: Visual Studio 2017
 
+install:
+  - cmd: ./Scripts/install.sh
+  - cmd: ./Scripts/build.sh
+
 before_build:
   - nuget restore
   - choco install opencover.portable
