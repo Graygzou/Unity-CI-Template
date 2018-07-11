@@ -69,13 +69,13 @@ echo ""
 #echo ""
 
 # Xunit
-mono ./packages/xunit.runner.console.2.3.1/tools/net452/xunit.console.exe ./Assets/Library/ScriptAssemblies/Assembly-CSharp.dll
+mono ./packages/xunit.runner.console.2.3.1/tools/net452/xunit.console.exe ./Library/ScriptAssemblies/Assembly-CSharp.dll
 
 #
 echo "Unity test logs v2.0"
 mono ./packages/JetBrains.dotCover.CommandLineTools.2018.1.1/tools/dotCover.exe analyse \
 	TargetExecutable="$(pwd)/testrunner/NUnit.ConsoleRunner.3.8.0/tools/nunit3-console.exe" \
-	TargetArguments="$(pwd)/Assets/Library/ScriptAssemblies/*.dll" \
+	TargetArguments="$(pwd)/Library/ScriptAssemblies/*.dll" \
 	Output="AppCoverageReport.xml" \
 	ReportType="XML"
 
