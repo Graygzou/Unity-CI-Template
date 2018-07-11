@@ -33,6 +33,11 @@ branches:
 #  global:
 #    - CODECOV_IO_TOKEN=2ff3d741-5b36-4314-9537-8581706ed054
 
+git:
+  depth: 3
+  quiet: false
+  submodules: false
+
 addons:
   apt:
     packages:
