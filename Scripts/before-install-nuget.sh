@@ -3,6 +3,10 @@
 #
 nuget restore Unity-CI-Template.sln
 
+
+### Unity dll (Maybe useless)
+nuget install Unity3D.DLLs -Version 1.0.1 -OutputDirectory UnityDLL -Verbosity quiet
+
 ### The NUnit unit testing tool.
 nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory packages -Verbosity quiet
 nuget install NUnit.Runners -Version 3.8.0 -OutputDirectory testrunner -Verbosity quiet
