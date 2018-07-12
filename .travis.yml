@@ -81,7 +81,6 @@ install:
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then
       ./Scripts/linux_build.sh;
     else
-      # OSX
       ./Scripts/osx_build.sh;
   - ./Scripts/install.sh
 
