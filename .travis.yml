@@ -126,9 +126,9 @@ script:
   # -----------------------
   # SonarQube scanner
   # -----------------------
-  - mono ./packages/MSBuild.SonarQube.Runner.Tool.4.3.0/tools/SonarScanner.MSBuild.exe begin /k:"graygzou:Sonar-UnityBase" /d:sonar.organization="graygzou-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="$(SONAR_TOKEN)"
+  - mono ./packages/MSBuild.SonarQube.Runner.Tool.4.3.0/tools/SonarScanner.MSBuild.exe begin /k:"graygzou:Sonar-UnityBase" /d:sonar.organization="graygzou-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="${SONAR_TOKEN}"
   - msbuild.exe /t:rebuild /v:diag
-  - mono ./packages/MSBuild.SonarQube.Runner.Tool.4.3.0/tools/SonarScanner.MSBuild.exe end /d:sonar.login="$(SONAR_TOKEN)"
+  - mono ./packages/MSBuild.SonarQube.Runner.Tool.4.3.0/tools/SonarScanner.MSBuild.exe end /d:sonar.login="${SONAR_TOKEN}"
 
   # -----------------------
   # NUnit tests
