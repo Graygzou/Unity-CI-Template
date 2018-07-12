@@ -100,9 +100,8 @@ script:
   # Build the project with msbuild
   - ls -l
   - ls -l packages/
-  - ls -l -R UnityDLL/
+  - ls -l -R packages/ Microsoft.NETCore.Targets.NETFramework.4.6.0
   - msbuild /p:Configuration=Release "Unity-CI-Template.sln"
-  - msbuild /p:Configuration=Release "Unity-CI-Template.Editor.sln"
   # Run customs tests.
   - ./Scripts/run-tests.sh
   - dotnet --info
@@ -127,7 +126,7 @@ script:
   # SonarQube scanner
   # -----------------------
   - mono ./packages/MSBuild.SonarQube.Runner.Tool.4.3.0/tools/SonarScanner.MSBuild.exe begin /k:"graygzou:Sonar-UnityBase" /d:sonar.organization="graygzou-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="${SONAR_TOKEN}"
-  - msbuild /t:rebuild /v:diag
+  - msbuild "Unity-CI-Template.sln" /t:rebuild /v:diag
   - mono ./packages/MSBuild.SonarQube.Runner.Tool.4.3.0/tools/SonarScanner.MSBuild.exe end /d:sonar.login="${SONAR_TOKEN}"
 
   # -----------------------
