@@ -99,7 +99,7 @@ script:
   # Build the project with msbuild
   - ls -l
   - ls -l packages/
-  - ls -l -R packages/Microsoft.NETCore.Targets.NETFramework.4.6.0/
+    #- ls -l -R packages/Microsoft.NETCore.Targets.NETFramework.4.6.0/
   - msbuild /p:Configuration=Release "Unity-CI-Template.sln"
   # Run customs tests.
   - ./Scripts/run-tests.sh
