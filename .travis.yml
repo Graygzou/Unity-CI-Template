@@ -96,10 +96,8 @@ script:
   # --- DEBUG ---
   #- ./Scripts/debug.sh
   # Inspecting code with the SonarQube Scanner
-  - sonar-scanner
+  #- sonar-scanner
   # Build the project with msbuild
-  - mono ./packages/MSBuild.SonarQube.Runner.Tool.4.3.0/tools/SonarScanner.MSBuild.exe begin /k:"graygzou:Sonar-UnityBase" /d:sonar.organization="graygzou-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="f3cf5c5dc3d719e4adde6962215181bed5ac0a6d"
-  - mono ./packages/MSBuild.SonarQube.Runner.Tool.4.3.0/tools/SonarScanner.MSBuild.exe end /d:sonar.login="f3cf5c5dc3d719e4adde6962215181bed5ac0a6d"
   - ls -l
   - ls -l packages/
   - ls -l -R UnityDLL/
@@ -124,6 +122,14 @@ script:
   # OpenCover -- Not tested
   #- OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:".\MyUnitTests\bin\Debug\MyUnitTests.dll -noshadow" -filter:"+[UnitTestTargetProject*]* -[MyUnitTests*]*" -output:".\MyProject_coverage.xml"
   #- codecov -f "MyProject_coverage.xml
+
+  # -----------------------
+  # SonarQube scanner
+  # -----------------------
+  - mono ./packages/MSBuild.SonarQube.Runner.Tool.4.3.0/tools/SonarScanner.MSBuild.exe begin /k:"graygzou:Sonar-UnityBase" /d:sonar.organization="graygzou-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="$(SONAR_TOKEN)"
+  - msbuild.exe /t:rebuild /v:diag
+  - mono ./packages/MSBuild.SonarQube.Runner.Tool.4.3.0/tools/SonarScanner.MSBuild.exe end /d:sonar.login="$(SONAR_TOKEN)"
+
   # -----------------------
   # NUnit tests
   # -----------------------
