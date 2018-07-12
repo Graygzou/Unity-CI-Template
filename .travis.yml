@@ -82,6 +82,7 @@ install:
       ./Scripts/linux_build.sh;
     else
       ./Scripts/osx_build.sh;
+    fi
   - ./Scripts/install.sh
 
 # --------------------------------------------------------------------
