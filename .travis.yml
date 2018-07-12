@@ -97,8 +97,9 @@ script:
   #- ./Scripts/debug.sh
   # Inspecting code with the SonarQube Scanner
   - sonar-scanner
+  - ls -l -R packages/
   # Build the project with msbuild
-  - SonarScanner.MSBuild.exe begin /k:"Sonar-UnityBase" /d:sonar.organization="graygzou-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="3850b46d1c5ec85ea36012d651a0cb7c12db906e"
+  - mono ./packages/SonarScanner.MSBuild.exe begin /k:"Sonar-UnityBase" /d:sonar.organization="graygzou-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="3850b46d1c5ec85ea36012d651a0cb7c12db906e"
   - SonarScanner.MSBuild.exe end /d:sonar.login="3850b46d1c5ec85ea36012d651a0cb7c12db906e"
   - ls -l
   - ls -l packages/

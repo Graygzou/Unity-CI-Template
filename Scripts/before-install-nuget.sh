@@ -17,6 +17,9 @@ nuget install OpenCover -Version 4.6.519 -OutputDirectory packages -Verbosity qu
 ### Produces the HTML report based upon OpenCover's Results (.XML)
 nuget install ReportGenerator -Version 2.4.5.0 -OutputDirectory packages -Verbosity quiet
 
+### SonarQube (SonarCloud) analysis tool
+nuget install MSBuild.SonarQube.Runner.Tool -Version 4.3.0 -OutputDirectory packages -Verbosity quiet
+
 ### Others imports for code coverage
 nuget install coveralls.io -Version 1.4.2 -OutputDirectory coveralls -Verbosity quiet
 nuget install JetBrains.dotCover.CommandLineTools -Version 2018.1.1 -OutputDirectory packages -Verbosity quiet
