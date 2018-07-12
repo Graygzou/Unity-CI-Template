@@ -69,8 +69,8 @@ before_install:
       sudo apt-get update;
       sudo apt-get install xmlstarlet;
     else
-      brew update > /dev/null
-      brew update;
+      brew update > /dev/null;
+      #brew update;
       brew install xmlstarlet;
     fi
   #- ./Scripts/debug.sh
