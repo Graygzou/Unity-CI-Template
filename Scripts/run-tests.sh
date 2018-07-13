@@ -6,16 +6,20 @@
 project="Unity-CI-Template"
 filename="unit-test-results.xml"
 
+ls -l ./Assets/
+
 # Run the editor unit tests.
 echo "Running editor unit tests for $project"
 /Applications/Unity/Unity.app/Contents/MacOS/Unity \
 	-batchmode \
 	-nographics \
-	-silent-crashes \
 	-projectPath $(pwd) \
 	-editorTestsResultFile $(pwd)/$filename \
-	-testFilter $(pwd)/Library/ScriptAssemblies/Assembly-CSharp.dll \
+	-testFilter $(pwd)/Assets/Library/ScriptAssemblies/Assembly-CSharp.dll \
 	-runEditorTests
+        -quit
+	
+# - quit should not be there since runEditorTests does it already..
 
 results=$?
 
