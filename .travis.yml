@@ -7,7 +7,7 @@ solution: Unity-CI-Template.sln
 matrix:
   include:
     - os: osx # 10.12
-      osx_image: xcode9.1
+      osx_image: xcode9.1 # Darwin
       dotnet: 2.1.301
       mono: none
       env: DOTNETCORE=1
@@ -104,7 +104,6 @@ script:
     ls -l /;
     ls -l /Library/Frameworks/;
     ls -l packages/;
-    #- ls -l -R packages/Microsoft.NETCore.Targets.NETFramework.4.6.0/
     msbuild /p:Configuration=Release "${TRAVIS_SOLUTION}";
   else
     dotnet --info;
