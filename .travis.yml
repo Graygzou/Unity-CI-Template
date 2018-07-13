@@ -100,18 +100,18 @@ script:
   #- ./Scripts/debug.sh
   # Inspecting code with the SonarQube Scanner
   #- sonar-scanner
+  - ls -l / 
+  - ls -l Library/Frameworks/
+  - ls -l packages/
   - if [ ! "$DOTNETCORE" ]; then
-    ls -l /;
-    ls -l /Library/Frameworks/;
-    ls -l packages/;
-    msbuild /p:Configuration=Release "${TRAVIS_SOLUTION}";
-  else
-    dotnet --info;
-    dotnet restore ./Unity-CI-Template.csproj;
-    dotnet build ./Unity-CI-Template.csproj;
-    dotnet test ./Unity-CI-Template.csproj;
-    dotnet test ./Unity-CI-Template.Editor.csproj;
-  fi
+      msbuild /p:Configuration=Release "${TRAVIS_SOLUTION}";
+    else
+      dotnet --info;
+      dotnet restore ./Unity-CI-Template.csproj;
+      dotnet build ./Unity-CI-Template.csproj;
+      dotnet test ./Unity-CI-Template.csproj;
+      dotnet test ./Unity-CI-Template.Editor.csproj;
+    fi
   # Run customs tests.
   - ./Scripts/run-tests.sh
    # Try something new.... Does not work.
