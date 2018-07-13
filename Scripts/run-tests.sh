@@ -3,7 +3,7 @@
 # This file is based on an example by SebastianJay. See the original example here:
 #	https://github.com/SebastianJay/unity-ci-test/
 
-project="Brain-Control"
+project="Unity-CI-Template"
 filename="unit-test-results.xml"
 
 # Run the editor unit tests.
@@ -14,7 +14,7 @@ echo "Running editor unit tests for $project"
 	-silent-crashes \
 	-projectPath $(pwd) \
 	-editorTestsResultFile $(pwd)/$filename \
-	-testFilter $(pwd)/Assets/Library/ScriptAssemblies/Assembly-CSharp.dll \
+	-testFilter $(pwd)/Library/ScriptAssemblies/Assembly-CSharp.dll \
 	-runEditorTests
 
 results=$?
