@@ -58,7 +58,7 @@ before_install:
   # Make executable files
   - chmod a+x ./Scripts/*.sh
   # Nuget installs
-  - if [ ! $DOTNETCORE ]; then
+  - if [ ! "$DOTNETCORE" ]; then
       ./Scripts/before-install-nuget.sh;
       chmod a+x ./packages/OpenCover.4.6.519/tools/OpenCover.Console.exe;
       chmod a+x ./packages/JetBrains.dotCover.CommandLineTools.2018.1.1/tools/dotCover.exe;
@@ -100,20 +100,22 @@ script:
   #- ./Scripts/debug.sh
   # Inspecting code with the SonarQube Scanner
   #- sonar-scanner
-  # Build the project with msbuild
-  - ls -l /
-  - ls -l /Library/Frameworks/
-  - ls -l packages/
+  - if [ ! "$DOTNETCORE" ]; then
+    ls -l /;
+    ls -l /Library/Frameworks/;
+    ls -l packages/;
     #- ls -l -R packages/Microsoft.NETCore.Targets.NETFramework.4.6.0/
-  - msbuild /p:Configuration=Release "${TRAVIS_SOLUTION}"
+    msbuild /p:Configuration=Release "${TRAVIS_SOLUTION}";
+  else
+    dotnet --info;
+    dotnet restore ./Unity-CI-Template.csproj;
+    dotnet build ./Unity-CI-Template.csproj;
+    dotnet test ./Unity-CI-Template.csproj;
+    dotnet test ./Unity-CI-Template.Editor.csproj;
+  fi
   # Run customs tests.
   - ./Scripts/run-tests.sh
-  - dotnet --info
-  - dotnet restore
-  - dotnet build
-  - dotnet test ./Unity-CI-Template.csproj
-  - dotnet test ./Unity-CI-Template.Editor.csproj
-  # Try something new.... Does not work.
+   # Try something new.... Does not work.
   #- mono --debug --profile=monocov:outfile=monocovCoverage.cov,+Unity-CI-Template ./testrunner/NUnit.ConsoleRunner.3.8.0/tools/nunit3-console.exe --process=Single ./Assets/Library/ScriptAssemblies/Assembly-CSharp.dll
   #- monocov --export-xml=monocovCoverage monocovCoverage.cov
   #- cat monocovCoverage.cov
