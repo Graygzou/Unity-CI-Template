@@ -2,7 +2,6 @@
 
 # This file is based on an example by SebastianJay. See the original example here:
 #	https://github.com/SebastianJay/unity-ci-test/
-set -euo pipefail
 
 project="Brain-Control"
 filename="unit-test-results.xml"
@@ -105,5 +104,3 @@ curl -s https://codecov.io/bash > codecov
 chmod +x codecov
 # NUnit v3.0
 ./codecov -f $(pwd)/$filename -t 2ff3d741-5b36-4314-9537-8581706ed054
-
-set +e
