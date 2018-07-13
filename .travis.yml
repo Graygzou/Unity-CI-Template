@@ -101,10 +101,11 @@ script:
   # Inspecting code with the SonarQube Scanner
   #- sonar-scanner
   # Build the project with msbuild
-  - ls -l
+  - ls -l /
+  - ls -l /Library/Frameworks/
   - ls -l packages/
     #- ls -l -R packages/Microsoft.NETCore.Targets.NETFramework.4.6.0/
-  - msbuild /p:Configuration=Release "Unity-CI-Template.sln"
+  - msbuild /p:Configuration=Release "${TRAVIS_SOLUTION}"
   # Run customs tests.
   - ./Scripts/run-tests.sh
   - dotnet --info
@@ -128,7 +129,7 @@ script:
   # SonarQube scanner
   # -----------------------
   - mono ./packages/MSBuild.SonarQube.Runner.Tool.4.3.0/tools/SonarScanner.MSBuild.exe begin /k:"graygzou:Sonar-UnityBase" /d:sonar.organization="graygzou-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="${SONAR_TOKEN}"
-  - msbuild /t:rebuild /v:diag "Unity-CI-Template.sln"
+  - msbuild /t:rebuild /v:diag "${TRAVIS_SOLUTION}"
   - mono ./packages/MSBuild.SonarQube.Runner.Tool.4.3.0/tools/SonarScanner.MSBuild.exe end /d:sonar.login="${SONAR_TOKEN}"
   # -----------------------
   # NUnit tests
