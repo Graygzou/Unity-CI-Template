@@ -102,7 +102,6 @@ script:
   #- sonar-scanner
   - ls -l / 
   - ls -l /Library/Frameworks/
-  - ls -l packages/
   - if [ ! "$DOTNETCORE" ]; then
       msbuild /p:Configuration=Release "${TRAVIS_SOLUTION}";
     else
@@ -112,8 +111,10 @@ script:
       dotnet test ./Unity-CI-Template.csproj;
       dotnet test ./Unity-CI-Template.Editor.csproj;
     fi
+  - ls -l
+  - ls -l Library/
   # Run customs tests.
-  - ./Scripts/run-tests.sh
+  - travis_wait ./Scripts/run-tests.sh
    # Try something new.... Does not work.
   #- mono --debug --profile=monocov:outfile=monocovCoverage.cov,+Unity-CI-Template ./testrunner/NUnit.ConsoleRunner.3.8.0/tools/nunit3-console.exe --process=Single ./Assets/Library/ScriptAssemblies/Assembly-CSharp.dll
   #- monocov --export-xml=monocovCoverage monocovCoverage.cov

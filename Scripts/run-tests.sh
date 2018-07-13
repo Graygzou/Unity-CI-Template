@@ -15,9 +15,7 @@ echo "Running editor unit tests for $project"
 	-nographics \
 	-projectPath $(pwd) \
 	-editorTestsResultFile $(pwd)/$filename \
-	-testFilter $(pwd)/Assets/Library/ScriptAssemblies/Assembly-CSharp.dll \
 	-runEditorTests
-        -quit
 	
 # - quit should not be there since runEditorTests does it already..
 
