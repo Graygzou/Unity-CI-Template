@@ -25,7 +25,7 @@ echo "travis_fold:start:install_unity"
 echo 'Installing Unity'
 curl -o $FILENAME $url
 chmod +x $FILENAME
-./$FILENAME --unattended --install-location="/opt/Unity/Editor/Unity"
+./$FILENAME --unattended --components --install-location="/opt/Unity/Editor/Unity"
 echo "travis_fold:end:install_unity"
 
 
