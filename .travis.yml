@@ -78,10 +78,11 @@ before_install:
 # install : Set up the dependencies of your build.
 # ---------------------------------------------------
 install:
-  - ./Scripts/install.sh
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then
+      ./Scripts/linux-install.sh;
       ./Scripts/linux-build.sh;
     else
+      ./Scripts/osx-install.sh;
       ./Scripts/osx-build.sh;
     fi
 
