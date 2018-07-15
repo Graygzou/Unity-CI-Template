@@ -115,7 +115,7 @@ script:
   - ls -l
   - ls -l Library/
   # Run customs tests.
-  - travis_wait ./Scripts/run-tests.sh
+  - ./Scripts/run-tests.sh
    # Try something new.... Does not work.
   #- mono --debug --profile=monocov:outfile=monocovCoverage.cov,+Unity-CI-Template ./testrunner/NUnit.ConsoleRunner.3.8.0/tools/nunit3-console.exe --process=Single ./Assets/Library/ScriptAssemblies/Assembly-CSharp.dll
   #- monocov --export-xml=monocovCoverage monocovCoverage.cov
