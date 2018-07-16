@@ -115,7 +115,7 @@ script:
   #- ls -l
   #- ls -l Library/
   # Run customs tests.
-  - ./Scripts/run-tests.sh
+  - ./Scripts/unity-tests.sh
   #- msbuild /p:Configuration=Debug "${TRAVIS_SOLUTION}"
   #- xbuild /p:Configuration=Release "${TRAVIS_SOLUTION}"
   #- xbuild /p:Configuration=Release "${TRAVIS_SOLUTION}" /p:TargetFrameworkVersion="v3.5"
@@ -131,20 +131,8 @@ script:
   # OpenCover -- Not tested
   #- OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:".\MyUnitTests\bin\Debug\MyUnitTests.dll -noshadow" -filter:"+[UnitTestTargetProject*]* -[MyUnitTests*]*" -output:".\MyProject_coverage.xml"
   #- codecov -f "MyProject_coverage.xml
-  - mono ./packages/MSBuild.SonarQube.Runner.Tool.4.3.0/tools/SonarScanner.MSBuild.exe begin /k:"graygzou:Sonar-UnityBase" /d:sonar.organization="graygzou-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="${SONAR_TOKEN}"
-  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then
-      ./Scripts/linux-build.sh;
-    else
-      ./Scripts/osx-build.sh;
-    fi
-  - mono ./packages/MSBuild.SonarQube.Runner.Tool.4.3.0/tools/SonarScanner.MSBuild.exe end /d:sonar.login="${SONAR_TOKEN}"
-  # -----------------------
-  # SonarQube scanner
-  # -----------------------
-  - mono ./packages/MSBuild.SonarQube.Runner.Tool.4.3.0/tools/SonarScanner.MSBuild.exe begin /k:"graygzou:Sonar-UnityBase" /d:sonar.organization="graygzou-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="${SONAR_TOKEN}"
-  #- msbuild /t:rebuild /v:diag "${TRAVIS_SOLUTION}"
-  - xbuild /p:Configuration=Release "${TRAVIS_SOLUTION}" /p:TargetFrameworkVersion="v3.5"
-  - mono ./packages/MSBuild.SonarQube.Runner.Tool.4.3.0/tools/SonarScanner.MSBuild.exe end /d:sonar.login="${SONAR_TOKEN}"
+  - ./Scripts/sonarcloud-deploy.sh
+  
   # -----------------------
   # NUnit tests
   # -----------------------
