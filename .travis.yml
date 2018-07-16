@@ -116,6 +116,10 @@ script:
   - ls -l Library/
   # Run customs tests.
   - ./Scripts/run-tests.sh
+  - msbuild /p:Configuration=Debug "${TRAVIS_SOLUTION}"
+  - msbuild /p:Configuration=Release "${TRAVIS_SOLUTION}"
+  - xbuild /p:Configuration=Release "${TRAVIS_SOLUTION}"
+  - xbuild /p:Configuration=Release "${TRAVIS_SOLUTION}" /p:TargetFrameworkVersion="v3.5"
    # Try something new.... Does not work.
   #- mono --debug --profile=monocov:outfile=monocovCoverage.cov,+Unity-CI-Template ./testrunner/NUnit.ConsoleRunner.3.8.0/tools/nunit3-console.exe --process=Single ./Assets/Library/ScriptAssemblies/Assembly-CSharp.dll
   #- monocov --export-xml=monocovCoverage monocovCoverage.cov
