@@ -112,14 +112,13 @@ script:
       dotnet test ./Unity-CI-Template.csproj;
       dotnet test ./Unity-CI-Template.Editor.csproj;
     fi
-  - ls -l
-  - ls -l Library/
+  #- ls -l
+  #- ls -l Library/
   # Run customs tests.
   - ./Scripts/run-tests.sh
-  - msbuild /p:Configuration=Debug "${TRAVIS_SOLUTION}"
-  - msbuild /p:Configuration=Release "${TRAVIS_SOLUTION}"
-  - xbuild /p:Configuration=Release "${TRAVIS_SOLUTION}"
-  - xbuild /p:Configuration=Release "${TRAVIS_SOLUTION}" /p:TargetFrameworkVersion="v3.5"
+  #- msbuild /p:Configuration=Debug "${TRAVIS_SOLUTION}"
+  #- xbuild /p:Configuration=Release "${TRAVIS_SOLUTION}"
+  #- xbuild /p:Configuration=Release "${TRAVIS_SOLUTION}" /p:TargetFrameworkVersion="v3.5"
    # Try something new.... Does not work.
   #- mono --debug --profile=monocov:outfile=monocovCoverage.cov,+Unity-CI-Template ./testrunner/NUnit.ConsoleRunner.3.8.0/tools/nunit3-console.exe --process=Single ./Assets/Library/ScriptAssemblies/Assembly-CSharp.dll
   #- monocov --export-xml=monocovCoverage monocovCoverage.cov
@@ -143,7 +142,8 @@ script:
   # SonarQube scanner
   # -----------------------
   - mono ./packages/MSBuild.SonarQube.Runner.Tool.4.3.0/tools/SonarScanner.MSBuild.exe begin /k:"graygzou:Sonar-UnityBase" /d:sonar.organization="graygzou-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="${SONAR_TOKEN}"
-  - msbuild /t:rebuild /v:diag "${TRAVIS_SOLUTION}"
+  #- msbuild /t:rebuild /v:diag "${TRAVIS_SOLUTION}"
+  - xbuild /p:Configuration=Release "${TRAVIS_SOLUTION}" /p:TargetFrameworkVersion="v3.5"
   - mono ./packages/MSBuild.SonarQube.Runner.Tool.4.3.0/tools/SonarScanner.MSBuild.exe end /d:sonar.login="${SONAR_TOKEN}"
   # -----------------------
   # NUnit tests
