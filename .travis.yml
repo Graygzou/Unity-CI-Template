@@ -106,11 +106,7 @@ script:
   - if [ ! "$DOTNETCORE" ]; then
       msbuild /p:Configuration=Release "${TRAVIS_SOLUTION}";
     else
-      dotnet --info;
-      dotnet restore ./Unity-CI-Template.csproj;
-      dotnet build ./Unity-CI-Template.csproj;
-      dotnet test ./Unity-CI-Template.csproj;
-      dotnet test ./Unity-CI-Template.Editor.csproj;
+      ./Scripts/dotnet.sh
     fi
   #- ls -l
   #- ls -l Library/
