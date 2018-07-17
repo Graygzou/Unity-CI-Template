@@ -84,6 +84,7 @@ install:
     else
       ./Scripts/osx-install.sh;
       ./Scripts/osx-build.sh;
+      ls -l /Library/Frameworks/;
     fi
 
 # --------------------------------------------------------------------
@@ -102,7 +103,6 @@ script:
   # Inspecting code with the SonarQube Scanner
   #- sonar-scanner
   - ls -l / 
-  - ls -l /Library/Frameworks/
   - if [ ! "$DOTNETCORE" ]; then
       msbuild /p:Configuration=Release "${TRAVIS_SOLUTION}";
     else
