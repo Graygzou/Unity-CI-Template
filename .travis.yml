@@ -106,7 +106,7 @@ script:
   - if [ ! "$DOTNETCORE" ]; then
       msbuild /p:Configuration=Release "${TRAVIS_SOLUTION}";
     else
-      ./Scripts/dotnet.sh
+      ./Scripts/dotnet.sh;
     fi
   #- ls -l
   #- ls -l Library/
