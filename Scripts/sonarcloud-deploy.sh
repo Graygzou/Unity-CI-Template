@@ -13,7 +13,7 @@ echo "travis_fold:end:preprocessing"
 # Build the project to generate a xml
 echo "travis_fold:start:build" 
 #- msbuild /t:rebuild /v:diag "${TRAVIS_SOLUTION}"
-xbuild /p:Configuration=Release "${TRAVIS_SOLUTION}" /p:TargetFrameworkVersion="v3.5"
+msbuild /p:Configuration=Release "${TRAVIS_SOLUTION}" /p:TargetFrameworkVersion="v3.5"
 echo "travis_fold:end:build"
 
 

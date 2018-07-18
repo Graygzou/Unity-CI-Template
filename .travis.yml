@@ -103,9 +103,7 @@ script:
   # Inspecting code with the SonarQube Scanner
   #- sonar-scanner
   - ls -l / 
-  - if [ ! "$DOTNETCORE" ]; then
-      msbuild /p:Configuration=Release "${TRAVIS_SOLUTION}";
-    else
+  - if [ "$DOTNETCORE" ]; then
       ./Scripts/dotnet.sh;
     fi
   #- ls -l
@@ -127,7 +125,11 @@ script:
   # OpenCover -- Not tested
   #- OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:".\MyUnitTests\bin\Debug\MyUnitTests.dll -noshadow" -filter:"+[UnitTestTargetProject*]* -[MyUnitTests*]*" -output:".\MyProject_coverage.xml"
   #- codecov -f "MyProject_coverage.xml
-  - ./Scripts/sonarcloud-deploy.sh
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then
+      ./Scripts/sonarcloud-deploy.sh
+    else
+      ./Scripts/sonarcloud-deploy.sh
+    fi
   
   # -----------------------
   # NUnit tests
