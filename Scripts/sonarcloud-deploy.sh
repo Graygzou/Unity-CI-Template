@@ -1,8 +1,17 @@
 #! /bin/sh
 
-# -----------------------
-# SonarQube scanner
-# -----------------------
+# -------------------------
+# SonarQube scanner 3.2
+# -------------------------
+
+# Sonarcloud CLI
+echo "travis_fold:start:scanner_cli"
+sonar-scanner -Dsonar.verbose=true -Dproject.settings=../Sonarcloud/sonar-project.properties
+echo "travis_fold:end:scanner_cli"
+
+# --------------------------------
+# SonarQube scanner for MSBuild
+# --------------------------------
 
 # Pre processing.
 echo "travis_fold:start:preprocessing"
