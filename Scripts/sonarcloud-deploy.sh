@@ -6,7 +6,8 @@
 
 # Sonarcloud CLI
 echo "travis_fold:start:scanner_cli"
-sonar-scanner -Dsonar.verbose=true -Dproject.settings=../Sonarcloud/sonar-project.properties
+sonar-scanner -Dsonar.projectKey=graygzou:Sonar-UnityBase -Dsonar.sources=../Assets
+#sonar-scanner -Dproject.settings=../Sonarcloud/sonar-project.properties
 echo "travis_fold:end:scanner_cli"
 
 # --------------------------------
