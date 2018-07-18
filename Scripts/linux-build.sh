@@ -5,7 +5,7 @@ project="Unity-CI-Template"
 
 echo "Attempting to build $project for Windows"
 echo "travis_fold:start:build_unity_win"
-/opt/Unity/Editor/Unity \
+./opt/Unity/Editor/Unity \
   -batchmode \
   -nographics \
   -silent-crashes \
