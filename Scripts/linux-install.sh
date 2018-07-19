@@ -21,13 +21,17 @@ sudo apt-get install libpng12
 sudo apt-get install libgconf-2-4
 echo "travis_fold:end:install_needed_dependencies"
 
-echo "travis_fold:start:install_unity"
-echo "Installing Unity"
-echo './ $FILENAME --unattended --components --install-location=(path)'
+# download
+echo "travis_fold:start:download_unity"
+echo "Download Unity"
 curl -o $FILENAME $url
 chmod +x $FILENAME
+sudo ./$FILENAME --unattended --download-location=./test
+echo "travis_fold:end:download_unity"
+
+# install
+echo "travis_fold:start:install_unity"
+echo "Installing Unity"
 ./$FILENAME --help
-./$FILENAME --unattended --install-location=/opt/Unity/Editor/Unity
-./$FILENAME --unattended --install-location=./linuxBuild --list-components
-./$FILENAME --unattended --install-location=. --list-components
+sudo ./$FILENAME --unattended --install-location=/opt/Unity/Editor/Unity
 echo "travis_fold:end:install_unity"
