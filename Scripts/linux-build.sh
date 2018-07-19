@@ -4,11 +4,14 @@
 project="Unity-CI-Template"
 
 echo "travis_fold:start:debug"
-find /opt -name '*Unity*'
+echo "debug"
+ls -l /opt
+find / -name "*[U|u]nity*"
+find / -name "*[E|e]ditor*"
 echo "travis_fold:end:debug"
 
-echo "Attempting to build $project for Windows"
 echo "travis_fold:start:build_unity_win"
+echo "Attempting to build $project for Windows"
 /opt/Unity/Editor/Unity \
   -batchmode \
   -nographics \
@@ -20,9 +23,8 @@ echo "travis_fold:start:build_unity_win"
 echo "travis_fold:end:build_unity_win"
 echo "Windows return code: $?"
 
-
-echo "Attempting to build $project for OS X"
 echo "travis_fold:start:build_unity_osx"
+echo "Attempting to build $project for OS X"
 /opt/Unity/Editor/Unity \
   -batchmode \
   -nographics \
@@ -34,8 +36,8 @@ echo "travis_fold:start:build_unity_osx"
 echo "travis_fold:end:build_unity_osx"
 echo "OS X return code: $?"
 
-echo "Attempting to build $project for Linux"
 echo "travis_fold:start:build_unity_linux"
+echo "Attempting to build $project for Linux"
 /opt/Unity/Editor/Unity \
   -batchmode \
   -nographics \
@@ -47,8 +49,8 @@ echo "travis_fold:start:build_unity_linux"
 echo "travis_fold:start:build_unity_linux"
 echo "Linux return code: $?"
 
-echo 'Logs from linux build'
 echo "travis_fold:start:build_log"
+echo "Logs from linux build"
 cat $(pwd)/unity-linux.log
 echo "travis_fold:end:build_log"
 
