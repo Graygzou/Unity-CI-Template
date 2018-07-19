@@ -11,6 +11,7 @@ FILENAME=UnitySetup-$VERSION
 
 url="$BASE_URL/$HASH/$FILENAME"
 
+#-------------------------------------------------------------
 # travis_fold helps make the build clear
 echo "travis_fold:start:install_needed_dependencies"
 echo 'Installing needed dependencies'
@@ -21,17 +22,30 @@ sudo apt-get install libpng12
 sudo apt-get install libgconf-2-4
 echo "travis_fold:end:install_needed_dependencies"
 
-# download
-echo "travis_fold:start:download_unity"
-echo "Download Unity"
+# Setup before install
+echo "travis_fold:start:preprocessing_install_unity"
+echo "Preprocessing install Unity"
 curl -o $FILENAME $url
 chmod +x $FILENAME
-sudo chown -R $USER:$USER $FILENAME --download-location=./test
+echo "travis_fold:end:preprocessing_install_unity"
+
+# Launch --help command
+echo "travis_fold:start:help_unity"
+echo "Help command Unity"
+curl -o $FILENAME $url
+chmod +x $FILENAME
+./$FILENAME --help
+echo "travis_fold:end:help_unity"
+
+# Launch --download-location command
+echo "travis_fold:start:download_unity"
+echo "Download Unity"
+./$FILENAME --download-location=./test
 echo "travis_fold:end:download_unity"
 
-# install
+# Launch --install-location command
 echo "travis_fold:start:install_unity"
 echo "Installing Unity"
-./$FILENAME --help
-sudo chown -R $USER:$USER $FILENAME --unattended --install-location=/opt/Unity/Editor/Unity
+./$FILENAME --unattended --install-location=/opt/Unity/Editor/Unity
 echo "travis_fold:end:install_unity"
+# ----------------------------------------------------------------------
