@@ -3,12 +3,12 @@
 # Change this the name of your project. This will be the name of the final executables as well.
 project="Unity-CI-Template"
 
-echo "travis_fold:start:debug"
+echo "travis_fold:start:debugFind"
 echo "debug"
 ls -l /opt
 find / -name "*[U|u]nity*"
 find / -name "*[E|e]ditor*"
-echo "travis_fold:end:debug"
+echo "travis_fold:end:debugFind"
 
 echo "travis_fold:start:build_unity_win"
 echo "Attempting to build $project for Windows"
@@ -20,8 +20,8 @@ echo "Attempting to build $project for Windows"
   -projectPath $(pwd) \
   -buildWindowsPlayer "$(pwd)/Build/windows/$project.exe" \
   -quit
-echo "travis_fold:end:build_unity_win"
 echo "Windows return code: $?"
+echo "travis_fold:end:build_unity_win"
 
 echo "travis_fold:start:build_unity_osx"
 echo "Attempting to build $project for OS X"
@@ -33,8 +33,8 @@ echo "Attempting to build $project for OS X"
   -projectPath $(pwd) \
   -buildOSXUniversalPlayer "$(pwd)/Build/osx/$project.app" \
   -quit
-echo "travis_fold:end:build_unity_osx"
 echo "OS X return code: $?"
+echo "travis_fold:end:build_unity_osx"
 
 echo "travis_fold:start:build_unity_linux"
 echo "Attempting to build $project for Linux"
@@ -46,8 +46,8 @@ echo "Attempting to build $project for Linux"
   -projectPath $(pwd) \
   -buildLinuxUniversalPlayer "$(pwd)/Build/linux/$project.exe" \
   -quit
-echo "travis_fold:start:build_unity_linux"
 echo "Linux return code: $?"
+echo "travis_fold:start:build_unity_linux"
 
 echo "travis_fold:start:build_log"
 echo "Logs from linux build"
