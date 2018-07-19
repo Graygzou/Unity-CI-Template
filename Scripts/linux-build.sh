@@ -3,9 +3,13 @@
 # Change this the name of your project. This will be the name of the final executables as well.
 project="Unity-CI-Template"
 
+echo "travis_fold:start:debug"
+find /opt -name '*Unity*'
+echo "travis_fold:end:debug"
+
 echo "Attempting to build $project for Windows"
 echo "travis_fold:start:build_unity_win"
-./opt/Unity/Editor/Unity \
+/opt/Unity/Editor/Unity \
   -batchmode \
   -nographics \
   -silent-crashes \
