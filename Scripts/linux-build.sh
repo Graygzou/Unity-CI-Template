@@ -5,7 +5,7 @@ project="Unity-CI-Template"
 
 echo "travis_fold:start:debugFind"
 echo "debug"
-ls -l /opt
+ls -l
 echo "find 1"
 sudo find / -name "*[E|e]ditor*"
 echo "find 2"
@@ -13,7 +13,7 @@ sudo find / -name "*[U|u]nity*"
 echo "find 3"
 sudo find / -name "*[E|e]ditor*"
 echo "find 4"
-sudo find / -name "linuxBuild"
+sudo find / -name "*linuxBuild*"
 echo "travis_fold:end:debugFind"
 
 echo "travis_fold:start:build_unity_win"

@@ -28,4 +28,5 @@ curl -o $FILENAME $url
 chmod +x $FILENAME
 ./$FILENAME --unattended --install-location=/opt/Unity/Editor/Unity --list-components
 ./$FILENAME --unattended --install-location=./linuxBuild --list-components
+./$FILENAME --unattended --install-location=. --list-components
 echo "travis_fold:end:install_unity"
