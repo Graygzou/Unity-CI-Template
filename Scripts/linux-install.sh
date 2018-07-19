@@ -26,6 +26,7 @@ echo "Installing Unity"
 echo './ $FILENAME --unattended --components --install-location=(path)'
 curl -o $FILENAME $url
 chmod +x $FILENAME
+./$FILENAME --help
 ./$FILENAME --unattended --install-location=/opt/Unity/Editor/Unity
 ./$FILENAME --unattended --install-location=./linuxBuild --list-components
 ./$FILENAME --unattended --install-location=. --list-components
