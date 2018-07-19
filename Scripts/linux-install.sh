@@ -26,12 +26,12 @@ echo "travis_fold:start:download_unity"
 echo "Download Unity"
 curl -o $FILENAME $url
 chmod +x $FILENAME
-sudo ./$FILENAME --unattended --download-location=./test
+sudo chown -R $USER:$USER $FILENAME --download-location=./test
 echo "travis_fold:end:download_unity"
 
 # install
 echo "travis_fold:start:install_unity"
 echo "Installing Unity"
 ./$FILENAME --help
-sudo ./$FILENAME --unattended --install-location=/opt/Unity/Editor/Unity
+sudo chown -R $USER:$USER $FILENAME --unattended --install-location=/opt/Unity/Editor/Unity
 echo "travis_fold:end:install_unity"
