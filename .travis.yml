@@ -125,7 +125,7 @@ script:
   # OpenCover -- Not tested
   #- OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:".\MyUnitTests\bin\Debug\MyUnitTests.dll -noshadow" -filter:"+[UnitTestTargetProject*]* -[MyUnitTests*]*" -output:".\MyProject_coverage.xml"
   #- codecov -f "MyProject_coverage.xml
-  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then
+  - if [ "$TRAVIS_OS_NAME" = "linux" || "$TRAVIS_OS_NAME" = "osx" ]; then
       ./Scripts/sonarcloud-mono-deploy.sh;
     else
       ./Scripts/sonarcloud-dotnet-deploy.sh;
