@@ -4,12 +4,13 @@
 
 # Unity used this website to host experimental releases of the Linux Editor
 BASE_URL=http://beta.unity3d.com/download
-HASH=aea5ecb8f9fd
+#HASH=aea5ecb8f9fd
+HASH=fbeab28dc46b
 # We need that version 2017.3.1f1 here
-VERSION=2017.3.1f1
+VERSION=2017.4.6f1
 FILENAME=UnitySetup-$VERSION
 
-url="$BASE_URL/$HASH/$FILENAME"
+url="$BASE_URL/$HASH/./$FILENAME"
 
 #-------------------------------------------------------------
 # travis_fold helps make the build clear
@@ -25,7 +26,8 @@ echo "travis_fold:end:install_needed_dependencies"
 # Setup before install
 echo "travis_fold:start:preprocessing_install_unity"
 echo "Preprocessing install Unity"
-curl -o $FILENAME $url
+echo "Downloading from $url: "
+curl -o "$FILENAME" "$url"
 chmod +x $FILENAME
 echo "travis_fold:end:preprocessing_install_unity"
 
@@ -40,12 +42,12 @@ echo "travis_fold:end:help_unity"
 # Launch --download-location command
 echo "travis_fold:start:download_unity"
 echo "Download Unity"
-./$FILENAME --verbose --unattended --download-location=./test
+./$FILENAME --unattended --download-location=./test --install-location=./UnityTest1
 echo "travis_fold:end:download_unity"
 
 # Launch --install-location command
 echo "travis_fold:start:install_unity"
 echo "Installing Unity"
-./$FILENAME --verbose --unattended --install-location=/opt/Unity/Editor/Unity
+./$FILENAME --unattended --verbose --install-location=./UnityTest
 echo "travis_fold:end:install_unity"
 # ----------------------------------------------------------------------
