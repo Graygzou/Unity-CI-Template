@@ -42,7 +42,7 @@ echo "travis_fold:end:help_unity"
 # Launch --download-location command
 echo "travis_fold:start:download_unity"
 echo "Download Unity"
-./$FILENAME --unattended --download-location=./test --install-location=./UnityTest1
+yes | ./$FILENAME --unattended --download-location=./test --install-location=./UnityTest1
 echo "travis_fold:end:download_unity"
 
 # Launch --install-location command
