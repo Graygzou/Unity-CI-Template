@@ -31,23 +31,15 @@ curl -o "$FILENAME" "$url"
 chmod +x $FILENAME
 echo "travis_fold:end:preprocessing_install_unity"
 
-# Launch --help command
-echo "travis_fold:start:help_unity"
-echo "Help command Unity"
-curl -o $FILENAME $url
-chmod +x $FILENAME
-./$FILENAME --help
-echo "travis_fold:end:help_unity"
-
 # Launch --download-location command
-echo "travis_fold:start:download_unity"
-echo "Download Unity"
-yes | ./$FILENAME --unattended --download-location=./test --install-location=./UnityTest1
-echo "travis_fold:end:download_unity"
+#echo "travis_fold:start:download_unity"
+#echo "Download Unity"
+#yes | ./$FILENAME --unattended --verbose --download-location=./test --install-location=./UnityTest1
+#echo "travis_fold:end:download_unity"
 
 # Launch --install-location command
 echo "travis_fold:start:install_unity"
 echo "Installing Unity"
-yes | ./$FILENAME --unattended --verbose --install-location=/opt/Unity/Editor/Unity
+yes | ./$FILENAME --unattended --install-location=/opt/Unity/Editor/Unity
 echo "travis_fold:end:install_unity"
 # ----------------------------------------------------------------------
