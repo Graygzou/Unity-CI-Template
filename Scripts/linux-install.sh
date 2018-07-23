@@ -48,6 +48,6 @@ echo "travis_fold:end:download_unity"
 # Launch --install-location command
 echo "travis_fold:start:install_unity"
 echo "Installing Unity"
-./$FILENAME --unattended --verbose --install-location=./UnityTest
+yes | ./$FILENAME --unattended --verbose --install-location=/opt/Unity/Editor/Unity
 echo "travis_fold:end:install_unity"
 # ----------------------------------------------------------------------
