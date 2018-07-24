@@ -4,10 +4,9 @@
 
 # Unity used this website to host experimental releases of the Linux Editor
 BASE_URL=http://beta.unity3d.com/download
-#HASH=aea5ecb8f9fd
-HASH=fbeab28dc46b
+HASH=aea5ecb8f9fd
 # We need that version 2017.3.1f1 here
-VERSION=2017.4.6f1
+VERSION=2017.3.1f1
 FILENAME=UnitySetup-$VERSION
 
 url="$BASE_URL/$HASH/./$FILENAME"
@@ -42,4 +41,8 @@ echo "travis_fold:start:install_unity"
 echo "Installing Unity"
 yes | ./$FILENAME --unattended --install-location=/opt/Unity/Editor/Unity
 echo "travis_fold:end:install_unity"
+
+echo "travis_fold:start:postprocessing_install_unity"
+chmod +x /opt/Unity/Editor/Unity
+echo "travis_fold:end:postprocessing_install_unity"
 # ----------------------------------------------------------------------
