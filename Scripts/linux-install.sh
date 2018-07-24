@@ -44,6 +44,6 @@ echo "travis_fold:end:install_unity"
 
 echo "travis_fold:start:postprocessing_install_unity"
 echo "Postprocessing install Unity"
-chmod +x /opt/Unity/Editor/Unity
+sudo chmod +x /opt/Unity/Editor/Unity
 echo "travis_fold:end:postprocessing_install_unity"
 # ----------------------------------------------------------------------
