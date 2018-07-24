@@ -102,7 +102,6 @@ script:
   #- ./Scripts/debug.sh
   # Inspecting code with the SonarQube Scanner
   #- sonar-scanner
-  - ls -l / 
   - if [ "$DOTNETCORE" ]; then
       ./Scripts/dotnet.sh;
     fi
