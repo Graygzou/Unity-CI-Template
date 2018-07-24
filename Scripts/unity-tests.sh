@@ -31,8 +31,7 @@ filename="unit-test-results.xml"
 echo "travis_fold:start:run_unity_tests"
 echo "Running editor unit tests for $project"
 # Run the editor unit tests.
-echo "$TRAVIS_OS_NAME"
-if [ "$TRAVIS_OS_NAME" -eq "osx" ]
+if [ "$TRAVIS_OS_NAME" = "osx" ]
 then
   /Applications/Unity/Unity.app/Contents/MacOS/Unity \
     -batchmode \
@@ -40,15 +39,17 @@ then
     -logFile $(pwd)/unity-tests.log \
     -projectPath $(pwd) \
     -editorTestsResultFile $(pwd)/$filename \
-    -runEditorTests;	
-else
+    -runEditorTests
+elif [ "$TRAVIS_OS_NAME" = "linux" ]
   /opt/Unity/Editor/Unity \
     -batchmode \
     -nographics \
     -logFile $(pwd)/unity-tests.log \
     -projectPath $(pwd) \
     -editorTestsResultFile $(pwd)/$filename \
-    -runEditorTests;
+    -runEditorTests
+else
+  echo "Unknown operating system."
 fi
 echo "travis_fold:end:run_unity_tests"
 

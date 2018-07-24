@@ -42,7 +42,7 @@ echo "Attempting to build $project for Linux"
   -buildLinuxUniversalPlayer "$(pwd)/Build/linux/$project.exe" \
   -quit
 echo "Linux return code: $?"
-echo "travis_fold:start:build_unity_linux"
+echo "travis_fold:end:build_unity_linux"
 
 echo "travis_fold:start:build_log"
 echo "Logs from linux build"
