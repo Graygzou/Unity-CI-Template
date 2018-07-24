@@ -41,6 +41,7 @@ then
     -editorTestsResultFile $(pwd)/$filename \
     -runEditorTests
 elif [ "$TRAVIS_OS_NAME" = "linux" ]
+then
   /opt/Unity/Editor/Unity \
     -batchmode \
     -nographics \
