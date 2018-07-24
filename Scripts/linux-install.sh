@@ -9,7 +9,7 @@ HASH=aea5ecb8f9fd
 VERSION=2017.3.1f1
 FILENAME=UnitySetup-$VERSION
 
-url="$BASE_URL/$HASH/./$FILENAME"
+url="$BASE_URL/$HASH/$FILENAME"
 
 #-------------------------------------------------------------
 # travis_fold helps make the build clear
@@ -23,22 +23,13 @@ sudo apt-get install libgconf-2-4
 echo "travis_fold:end:install_needed_dependencies"
 
 # Setup before install
-echo "travis_fold:start:preprocessing_install_unity"
-echo "Preprocessing install Unity"
+echo "travis_fold:start:install_unity"
+echo "Installing Unity"
 echo "Downloading from $url: "
 curl -o "$FILENAME" "$url"
 chmod +x $FILENAME
-echo "travis_fold:end:preprocessing_install_unity"
-
-# Launch --download-location command
-#echo "travis_fold:start:download_unity"
-#echo "Download Unity"
-#yes | ./$FILENAME --unattended --verbose --download-location=./test --install-location=./UnityTest1
-#echo "travis_fold:end:download_unity"
-
 # Launch --install-location command
-echo "travis_fold:start:install_unity"
-echo "Installing Unity"
+echo "Launch the command."
 yes | ./$FILENAME --unattended --install-location=/opt/Unity
 echo "travis_fold:end:install_unity"
 
