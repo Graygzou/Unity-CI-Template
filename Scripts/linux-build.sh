@@ -3,19 +3,6 @@
 # Change this the name of your project. This will be the name of the final executables as well.
 project="Unity-CI-Template"
 
-echo "travis_fold:start:debugFind"
-echo "debug"
-ls -l
-echo "find 1"
-sudo find / -name "*[E|e]ditor*"
-echo "find 2"
-sudo find / -name "*[U|u]nity*"
-echo "find 3"
-sudo find / -name "*[E|e]ditor*"
-echo "find 4"
-sudo find / -name "*linuxBuild*"
-echo "travis_fold:end:debugFind"
-
 echo "travis_fold:start:build_unity_win"
 echo "Attempting to build $project for Windows"
 /opt/Unity/Editor/Unity \
