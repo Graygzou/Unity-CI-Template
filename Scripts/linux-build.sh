@@ -21,6 +21,7 @@ echo "Attempting to build $project for OS X"
 /opt/Unity/Editor/Unity \
   -batchmode \
   -nographics \
+  -force-opengl \
   -silent-crashes \
   -logFile $(pwd)/unity-osx.log \
   -projectPath $(pwd) \
@@ -34,6 +35,7 @@ echo "Attempting to build $project for Linux"
 /opt/Unity/Editor/Unity \
   -batchmode \
   -nographics \
+  -force-opengl \
   -silent-crashes \
   -logFile $(pwd)/unity-linux.log \
   -projectPath $(pwd) \
