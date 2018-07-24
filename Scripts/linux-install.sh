@@ -39,7 +39,7 @@ echo "travis_fold:end:preprocessing_install_unity"
 # Launch --install-location command
 echo "travis_fold:start:install_unity"
 echo "Installing Unity"
-yes | ./$FILENAME --unattended --install-location=/opt/Unity/Editor/Unity
+yes | ./$FILENAME --unattended --install-location=/opt/Unity
 echo "travis_fold:end:install_unity"
 
 echo "travis_fold:start:postprocessing_install_unity"
