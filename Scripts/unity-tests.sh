@@ -28,27 +28,35 @@
 project="Unity-CI-Template"
 filename="unit-test-results.xml"
 
-ls -l ./Assets/
-
 echo "travis_fold:start:run_unity_tests"
 echo "Running editor unit tests for $project"
 # Run the editor unit tests.
-if [ "$TRAVIS_OS_NAME" = "osx" ]; then
+echo "$TRAVIS_OS_NAME"
+if [ "$TRAVIS_OS_NAME" -eq "osx" ]
+then
   /Applications/Unity/Unity.app/Contents/MacOS/Unity \
     -batchmode \
     -nographics \
+    -logFile $(pwd)/unity-tests.log \
     -projectPath $(pwd) \
     -editorTestsResultFile $(pwd)/$filename \
-    -runEditorTests	
+    -runEditorTests;	
 else
   /opt/Unity/Editor/Unity \
     -batchmode \
     -nographics \
+    -logFile $(pwd)/unity-tests.log \
     -projectPath $(pwd) \
     -editorTestsResultFile $(pwd)/$filename \
-    -runEditorTests
+    -runEditorTests;
 fi
 echo "travis_fold:end:run_unity_tests"
+
+# Print Unity tests logs.
+echo "travis_fold:start:unity_tests_logs"
+echo "Unity test logs"
+cat $(pwd)/unity-tests.log
+echo "travis_fold:end:unity_tests_logs"
 
 results=$?
 
@@ -68,10 +76,10 @@ fi
 #echo "travis_fold:end:results_tests"
 
 # Print the Unity results.
-echo "travis_fold:start:unity_tests_log"
-echo "Unity test logs"
+echo "travis_fold:start:unity_tests_results"
+echo "Unity test results"
 cat $(pwd)/$filename
-echo "travis_fold:end:unity_tests_log"
+echo "travis_fold:end:unity_tests_results"
 
 # Convert the Unity test in NUnit Test with xmlskarlet.
 #echo "Converting file in NUnit xml format..."
