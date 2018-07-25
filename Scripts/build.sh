@@ -30,8 +30,6 @@ if [ "$TRAVIS_OS_NAME" = "linux" ]; then	# LINUX build
   echo "Attempting to build $project for Windows"
   /opt/Unity/Editor/Unity \
     -batchmode \
-    -nographics \
-    -silent-crashes \
     -logFile $(pwd)/unity-win.log \
     -projectPath $(pwd) \
     -buildWindowsPlayer "$(pwd)/Build/windows/$project.exe" \
@@ -58,6 +56,7 @@ if [ "$TRAVIS_OS_NAME" = "linux" ]; then	# LINUX build
   /opt/Unity/Editor/Unity \
     -batchmode \
     -nographics \
+    -force-free
     -logFile $(pwd)/unity-linux.log \
     -projectPath $(pwd) \
     -buildLinuxUniversalPlayer "$(pwd)/Build/linux/$project.exe" \
@@ -67,6 +66,7 @@ if [ "$TRAVIS_OS_NAME" = "linux" ]; then	# LINUX build
 
   echo "travis_fold:start:build_log"
   echo "Logs from linux build"
+  cat $(pwd)/unity-win.log
   cat $(pwd)/unity-linux.log
   echo "travis_fold:end:build_log"
 else  # OSX build
