@@ -64,28 +64,13 @@ before_install:
       chmod a+x ./packages/JetBrains.dotCover.CommandLineTools.2018.1.1/tools/dotCover.exe;
       chmod a+x ./packages/xunit.runner.console.2.3.1/tools/net452/xunit.console.exe;
     fi
-  # Apt installs
-  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then
-      sudo apt-get update;
-      sudo apt-get install xmlstarlet;
-    else
-      brew update > /dev/null;
-      brew install xmlstarlet;
-    fi
-  #- ./Scripts/debug.sh
 
 # ---------------------------------------------------
 # install : Set up the dependencies of your build.
 # ---------------------------------------------------
 install:
-  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then
-      ./Scripts/linux-install.sh;
-      ./Scripts/linux-build.sh;
-    else
-      ./Scripts/osx-install.sh;
-      ./Scripts/osx-build.sh;
-      ls -l /Library/Frameworks/;
-    fi
+  - ./Scripts/install.sh
+  - ./Scripts/build.sh
 
 # --------------------------------------------------------------------
 # Set up your environment before you run your script.

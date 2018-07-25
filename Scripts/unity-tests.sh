@@ -31,8 +31,7 @@ filename="unit-test-results.xml"
 echo "travis_fold:start:run_unity_tests"
 echo "Running editor unit tests for $project"
 # Run the editor unit tests.
-if [ "$TRAVIS_OS_NAME" = "osx" ]
-then
+if [[ $TRAVIS_OS_NAME == "osx" ]]; then
   /Applications/Unity/Unity.app/Contents/MacOS/Unity \
     -batchmode \
     -nographics \
@@ -40,8 +39,7 @@ then
     -projectPath $(pwd) \
     -editorTestsResultFile $(pwd)/$filename \
     -runEditorTests
-elif [ "$TRAVIS_OS_NAME" = "linux" ]
-then
+elif [[ $TRAVIS_OS_NAME == "linux" ]]; then
   /opt/Unity/Editor/Unity \
     -batchmode \
     -nographics \
@@ -65,8 +63,7 @@ results=$?
 # Print results of Unity tests.
 #echo "travis_fold:start:results_tests"
 echo "Overall results"
-if [ $results -ne 0 ]
-then
+if [ $results -ne 0 ]; then
   echo "------------------------"
   echo "? Failed unit tests."
   echo "------------------------"
