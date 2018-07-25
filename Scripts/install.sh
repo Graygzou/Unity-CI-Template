@@ -75,8 +75,7 @@ if [ "$TRAVIS_OS_NAME" = "linux" ]; then	# LINUX build
   curl -o "$FILENAME" "$url"
   chmod +x $FILENAME
   # Launch --install-location command
-  echo "Launch the command."
-  yes "yes" | ./$FILENAME --unattended --install-location=/opt/Unity
+  yes | ./$FILENAME --unattended --install-location=/opt/Unity
   echo "travis_fold:end:install_unity"
 
   echo "travis_fold:start:postprocessing_install_unity"
