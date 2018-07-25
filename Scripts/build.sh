@@ -25,6 +25,7 @@
 project="Unity-CI-Template"
 
 if [ "$TRAVIS_OS_NAME" = "linux" ]; then	# LINUX build
+  /opt/Unity/Editor/Unity -help
   echo "travis_fold:start:build_unity_win"
   echo "Attempting to build $project for Windows"
   /opt/Unity/Editor/Unity \
@@ -57,8 +58,6 @@ if [ "$TRAVIS_OS_NAME" = "linux" ]; then	# LINUX build
   /opt/Unity/Editor/Unity \
     -batchmode \
     -nographics \
-    -force-opengl \
-    -silent-crashes \
     -logFile $(pwd)/unity-linux.log \
     -projectPath $(pwd) \
     -buildLinuxUniversalPlayer "$(pwd)/Build/linux/$project.exe" \
