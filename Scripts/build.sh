@@ -24,7 +24,7 @@
 # Change this the name of your project. This will be the name of the final executables as well.
 project="Unity-CI-Template"
 
-if [[ $TRAVIS_OS_NAME == "linux" ]]; then	# LINUX build
+if [ $TRAVIS_OS_NAME == "linux" ]; then	# LINUX build
   echo "travis_fold:start:build_unity_win"
   echo "Attempting to build $project for Windows"
   /opt/Unity/Editor/Unity \
