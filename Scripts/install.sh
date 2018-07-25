@@ -49,7 +49,7 @@ install() {
 }
 
 
-if [ $TRAVIS_OS_NAME == "linux" ]; then	# LINUX build
+if [ "$TRAVIS_OS_NAME" = "linux" ]; then	# LINUX build
   BASE_URL=http://beta.unity3d.com/download
   HASH=aea5ecb8f9fd
   # We need that version 2017.3.1f1 here
