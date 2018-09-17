@@ -6,6 +6,9 @@ solution: Unity-CI-Template.sln
 
 matrix:
   include:
+    - os: linux # Ubuntu 14.04
+      dist: trusty
+      sudo: required
     - os: osx # 10.12
       osx_image: xcode9.1 # Darwin
       dotnet: 2.1.301
@@ -19,9 +22,6 @@ matrix:
       osx_image: xcode9.1
       dotnet: 2.1.301
       mono: latest
-    - os: linux # Ubuntu 14.04
-      dist: trusty
-      sudo: required
 
 # Specified the branch.
 branches:
