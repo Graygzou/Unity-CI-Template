@@ -84,7 +84,7 @@ before_script:
 # ---------------------------------
 script:
   # --- DEBUG ---
-  ./Scripts/debug.sh
+  - ./Scripts/debug.sh
   # Inspecting code with the SonarQube Scanner
   #- sonar-scanner
   - if [ "$DOTNETCORE" ]; then
