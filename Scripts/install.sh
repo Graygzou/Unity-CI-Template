@@ -51,12 +51,12 @@ install() {
 
 if [ "$TRAVIS_OS_NAME" = "linux" ]; then	# LINUX build
   BASE_URL=http://beta.unity3d.com/download
-  HASH=aea5ecb8f9fd
+  HASH=aea5ecb8f9fd+
   # We need that version 2017.3.1f1 here
   VERSION=2017.3.1f1
   FILENAME=UnitySetup-$VERSION
   # Final url
-  url="$BASE_URL/$HASH/$FILENAME"
+  url="$BASE_URL/$HASH/./$FILENAME"
 
   # travis_fold helps make the build clear
   echo "travis_fold:start:install_needed_dependencies"
