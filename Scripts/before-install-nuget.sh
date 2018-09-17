@@ -10,6 +10,8 @@ nuget install Unity3D.DLLs -Version 1.0.1 -OutputDirectory UnityDLL -Verbosity q
 ### .NETFramework
 nuget install Microsoft.NETCore.Targets.NETFramework -Version 4.6.0 -outputDirectory packages
 
+nuget install Microsoft.NET.Test.Sdk -Version 15.8.0 -outputDirectory packages
+
 ### The NUnit unit testing tool.
 nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory packages -Verbosity quiet
 nuget install NUnit.Runners -Version 3.8.0 -OutputDirectory testrunner -Verbosity quiet
