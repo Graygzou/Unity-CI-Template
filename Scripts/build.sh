@@ -56,7 +56,7 @@ if [ "$TRAVIS_OS_NAME" = "linux" ]; then	# LINUX build
   /opt/Unity/Editor/Unity \
     -batchmode \
     -nographics \
-    -force-free
+    -force-free \
     -logFile $(pwd)/unity-linux.log \
     -projectPath $(pwd) \
     -buildLinuxUniversalPlayer "$(pwd)/Build/linux/$project.exe" \
