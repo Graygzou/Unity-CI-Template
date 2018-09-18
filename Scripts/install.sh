@@ -51,9 +51,11 @@ install() {
 
 if [ "$TRAVIS_OS_NAME" = "linux" ]; then	# LINUX build
   BASE_URL=http://beta.unity3d.com/download
-  HASH=aea5ecb8f9fd+
+  # HASH=aea5ecb8f9fd+
+  HASH=88f43da96871
   # We need that version 2017.3.1f1 here
-  VERSION=2017.3.1f1
+  # VERSION=2017.3.1f1
+  VERSION=2018.2.5f1
   FILENAME=UnitySetup-$VERSION
   # Final url
   url="$BASE_URL/$HASH/./$FILENAME"
