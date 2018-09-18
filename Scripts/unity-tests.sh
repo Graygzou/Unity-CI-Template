@@ -139,7 +139,7 @@ echo "--------------------------------------------------"
 # Sending results to Coveralls
 echo "travis_fold:start:coveralls"
 echo "Sending data to Coveralls..."
-mono ./coveralls/coveralls.io.1.4.2/tools/coveralls.net.exe -d --opencover "$(pwd)/$filename" -r $COVERALLS_REPO_TOKEN
+mono ./coveralls/coveralls.io.1.4.2/tools/coveralls.net.exe --opencover $(pwd)/$filename --repo-token $COVERALLS_REPO_TOKEN
 echo "travis_fold:end:coveralls"
 
 # Sending results to Codecov
