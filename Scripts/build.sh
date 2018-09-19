@@ -55,6 +55,8 @@ if [ "$TRAVIS_OS_NAME" = "linux" ]; then	# LINUX build
   /opt/Unity/Editor/Unity \
     -batchmode \
     -nographics \
+    -username "gregoire.boiron@gmail.com" \
+    -password "${UNITY_PASSWORD}" \
     -logFile $(pwd)/unity-linux.log \
     -projectPath $(pwd) \
     -buildLinuxUniversalPlayer "$(pwd)/Build/linux/$project.exe" \
@@ -65,6 +67,7 @@ if [ "$TRAVIS_OS_NAME" = "linux" ]; then	# LINUX build
   echo "travis_fold:start:build_log"
   echo "Logs from linux build"
   cat $(pwd)/unity-win.log
+  cat $(pwd)/unity-osx.log
   cat $(pwd)/unity-linux.log
   echo "travis_fold:end:build_log"
 else  # OSX build
