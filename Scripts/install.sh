@@ -84,6 +84,11 @@ if [ "$TRAVIS_OS_NAME" = "linux" ]; then	# LINUX build
      echo "travis_fold:start:postprocessing_install_unity"
      echo "Postprocessing install Unity"
      sudo chmod +x /opt/Unity/Editor/Unity
+     # Create Certificate Folder
+     mkdir ~/Library/Unity
+     mkdir ~/Library/Unity/Certificates
+     # Copy the file to the folder
+     cp CACerts.pem ~/Library/Unity/Certificates/
      echo "travis_fold:end:postprocessing_install_unity"
 
      # Print the Unity license
